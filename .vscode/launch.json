@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/WebApis/bin/Debug/netcoreapp2.1/WebApis.dll",
+            "program": "${workspaceFolder}/Services/bin/Debug/netcoreapp2.1/Services.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "stopAtEntry": false,
