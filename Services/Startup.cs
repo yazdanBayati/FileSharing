@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Core;
+using DataAccess;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +16,11 @@ namespace Services {
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices (IServiceCollection services) {
+        public void ConfigureServices (IServiceCollection services, IHostingEnvironment env) {
 
-            services.AddDbContext<FileSharingContext> (options =>
-                options.UseNpgsql (Configuration.GetConnectionString ("FileSharingConnection")));
+            services.AddSingleton<IUnitOfWorkFactory, EntityFrameworkFactory>();
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
-            services.AddSingleton<IFileRepository, FileRepository> ();
+            //services.AddSingleton<IFileRepository, FileRepository> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

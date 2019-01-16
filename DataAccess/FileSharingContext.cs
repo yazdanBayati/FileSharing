@@ -1,12 +1,18 @@
 using Core;
 using Microsoft.EntityFrameworkCore;
 
-public class FileSharingContext : DbContext, IUnitOfWork
+public class FileSharingContext : DbContext, IUintOfWork
 {
     
-    public FileSharingContext(DbContextOptions<FileSharingContext> options):base(options)
+    private string _connStr;
+    public FileSharingContext(string connStr)
     {
-        
+        this._connStr = connStr;
+    }
+
+     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseNpgsql(this._connStr);
     }
 
     public DbSet<File> Files {get; set;}

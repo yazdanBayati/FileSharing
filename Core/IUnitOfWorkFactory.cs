@@ -2,6 +2,6 @@ namespace Core
 {
     public interface IUnitOfWorkFactory
     {
-         IUnitOfWork Create();
+         IUintOfWork Create(string connStr);
     }
 }

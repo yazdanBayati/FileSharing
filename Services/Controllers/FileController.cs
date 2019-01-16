@@ -2,21 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Core;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Services.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class FileController : ControllerBase
+    public class FileController : FileSharingController
     {
-        IFileRepository _fileRepo;
+        
+        public FileController(IUnitOfWorkFactory unitOfWorkFactory):base(unitOfWorkFactory)
+        {
+            
+        }
 
         //public FileRepository(IFileRepository fileRepo) => this._fileRepo = fileRepo;
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
         {
+            
+            using(this.)
             
             return new string[] { "value1", "value2" };
         }

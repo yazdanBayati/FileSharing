@@ -1,6 +1,6 @@
 namespace Core
 {
-    public interface IUnitOfWork
+    public interface IUintOfWork
     {
        void Start();
        // void SaveChanges();
