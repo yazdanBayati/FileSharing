@@ -1,3 +1,5 @@
-public interface IFileRepository{
+using Core;
+
+public interface IFileRepository : IBaseRepository<File>{
     
 }

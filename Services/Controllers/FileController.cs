@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 
 namespace Services.Controllers
 {
@@ -12,9 +13,9 @@ namespace Services.Controllers
     public class FileController : FileSharingController
     {
         
-        public FileController(IUnitOfWorkFactory unitOfWorkFactory):base(unitOfWorkFactory)
+        public FileController(IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repoFactory, IConfiguration configuration):base(unitOfWorkFactory, repoFactory, configuration)
         {
-            
+
         }
 
         //public FileRepository(IFileRepository fileRepo) => this._fileRepo = fileRepo;
@@ -23,7 +24,9 @@ namespace Services.Controllers
         public ActionResult<IEnumerable<string>> Get()
         {
             
-            using(this.)
+            using(this._unitOfWorkFactory.Create(this.cnnStr)){
+                
+            }
             
             return new string[] { "value1", "value2" };
         }
