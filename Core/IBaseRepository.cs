@@ -15,7 +15,6 @@ namespace Core
 
        
         void Delete(T entity);
-        Task DeleteAsync(T entity);
        
         void Delete(int id);
         Task DeleteAsync(int id);
@@ -36,7 +35,7 @@ namespace Core
 
        
         IQueryable<T> GetAll();
-        Task<IQueryable<T>> GetAllAsync();
+       
 
 
         void Detach(T entity);

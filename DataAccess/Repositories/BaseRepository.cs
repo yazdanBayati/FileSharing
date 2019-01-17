@@ -18,98 +18,155 @@ namespace DataAccess.Repositories
 
         public void Add(T entity)
         {
-            var entry = this.Context.Entry(entity);
-            if (entry.State != EntityState.Detached)
-            {
-                entry.State = EntityState.Added;
-            }
-            else
-            {
-                this.DbSet.Add(entity);
-            }
+            this.DbSet.Add(entity);
+            // var entry = this.Context.Entry(entity);
+            // if (entry.State != EntityState.Detached)
+            // {
+            //     entry.State = EntityState.Added;
+            // }
+            // else
+            // {
+            //     this.DbSet.Add(entity);
+            // }
         }
 
         public async Task AddAsync(T entity)
         {
-             var entry = this.Context.Entry(entity);
-            if (entry.State != EntityState.Detached)
-            {
-                entry.State = EntityState.Added;
-            }
-            else
-            {
-                await this.DbSet.AddAsync(entity);
-            }
+             await this.DbSet.AddAsync(entity);
+            
+            // var entry = this.Context.Entry(entity);
+            // if (entry.State != EntityState.Detached)
+            // {
+            //     entry.State = EntityState.Added;
+            // }
+            // else
+            // {
+            //     await this.DbSet.AddAsync(entity);
+            // }
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            this.DbSet.Attach(entity);
+            this.DbSet.Remove(entity);
         }
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            var entity = this.Get(id);
+            this.DbSet.Remove(entity);
         }
 
-        public Task DeleteAsync(T entity)
-        {
-            throw new NotImplementedException();
-        }
+       
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var entity = await this.GetAsync(id);
+            this.DbSet.Remove(entity);
         }
 
         public void Detach(T entity)
         {
-            throw new NotImplementedException();
+            var  entry = this.Context.Entry(entity);
+
+            entry.State = EntityState.Detached;
         }
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            if (this.Context != null)
+            {
+               this.Context.Dispose();
+            }
         }
 
         public T Get(int id)
         {
-            throw new NotImplementedException();
+            return this.DbSet.Find(id);
         }
 
         public IQueryable<T> GetAll()
         {
-            throw new NotImplementedException();
+            return this.DbSet.AsNoTracking();
         }
 
-        public Task<IQueryable<T>> GetAllAsync()
+        public async Task<T> GetAsync(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<T> GetAsync(int id)
-        {
-            throw new NotImplementedException();
+            return await this.DbSet.FindAsync(id);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            Update(entity, o =>
+            {
+                var r = (IKey)o;
+                return r.Id;
+
+
+            });
         }
 
         public void Update(T entity, Func<T, int> getKey)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new System.ArgumentException("Cannot add a null entity.");
+            }
+
+            var entry = Context.Entry<T>(entity);
+
+            if (entry.State == EntityState.Detached)
+            {
+                var set = Context.Set<T>();
+                T attachedEntity = set.Find(getKey(entity));
+
+                if (attachedEntity != null)
+                {
+                    var attachedEntry = Context.Entry(attachedEntity);
+                    attachedEntry.CurrentValues.SetValues(entity);
+                }
+                else
+                {
+                    entry.State = EntityState.Modified; // This should attach entity
+                }
+            }
         }
 
-        public Task UpdateAsync(T entity)
+        public async  Task UpdateAsync(T entity)
         {
-            throw new NotImplementedException();
+            await UpdateAsync(entity, o =>
+            {
+                var r = (IKey)o;
+                return r.Id;
+
+
+            });
         }
 
-        public Task UpdateAsync(T entity, Func<T, int> getKey)
+        public async Task UpdateAsync(T entity, Func<T, int> getKey)
         {
-            throw new NotImplementedException();
+            if (entity == null)
+            {
+                throw new System.ArgumentException("Cannot add a null entity.");
+            }
+
+            var entry = Context.Entry<T>(entity);
+
+            if (entry.State == EntityState.Detached)
+            {
+                var set = Context.Set<T>();
+                T attachedEntity = await set.FindAsync(getKey(entity));
+
+                if (attachedEntity != null)
+                {
+                    var attachedEntry = Context.Entry(attachedEntity);
+                    attachedEntry.CurrentValues.SetValues(entity);
+                }
+                else
+                {
+                    entry.State = EntityState.Modified; // This should attach entity
+                }
+            }
         }
     }
 }
