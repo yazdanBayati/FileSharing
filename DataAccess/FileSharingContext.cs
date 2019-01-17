@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using Core;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,6 +28,21 @@ public class FileSharingContext : DbContext, IUintOfWork
     }
 
     public void Start()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public Task StartAsync()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public async Task CommitAsync()
+    {
+        await this.SaveChangesAsync();
+    }
+
+    public Task CommitAsync(int userId)
     {
         throw new System.NotImplementedException();
     }

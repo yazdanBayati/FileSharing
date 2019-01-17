@@ -1,3 +1,4 @@
+using System;
 using Core;
 
 namespace DataAccess
@@ -10,6 +11,7 @@ namespace DataAccess
             {
                 return new FileRepository(unitOfWork as FileSharingContext) as T;
             }
+            throw new Exception("respository not support");
         }
     }
 }

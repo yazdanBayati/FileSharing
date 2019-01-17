@@ -21,11 +21,15 @@ namespace Services.Controllers
         //public FileRepository(IFileRepository fileRepo) => this._fileRepo = fileRepo;
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
-        {
+        public async Task<ActionResult<IEnumerable<string>>> Get()
+    {
             
-            using(this._unitOfWorkFactory.Create(this.cnnStr)){
-                
+            using(var uow = _unitOfWorkFactory.Create(this.cnnStr))
+            {
+                var repo = _repoFactory.Create<IFileRepository>(uow);
+                var file = new File();
+                await repo.AddAsync(file);
+                await uow.CommitAsync();
             }
             
             return new string[] { "value1", "value2" };
