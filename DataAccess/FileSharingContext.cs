@@ -13,7 +13,7 @@ public class FileSharingContext : DbContext, IUintOfWork
 
      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql(this._connStr);
+        optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=123;Database=FileSharing;");
     }
 
     public DbSet<File> Files {get; set;}

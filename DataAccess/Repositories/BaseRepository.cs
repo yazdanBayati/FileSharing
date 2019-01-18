@@ -11,7 +11,13 @@ namespace DataAccess.Repositories
     {
         public BaseRepository(FileSharingContext fileSharingContxt)
         {
+             if (fileSharingContxt == null)
+            {
+                throw new System.ArgumentException("An instance of DbContext is " +
+                    "required to use this repository.", "context");
+            }
             this.Context = fileSharingContxt;
+            this.DbSet = this.Context.Set<T>();
         }
         protected FileSharingContext Context { get; set; }
         protected DbSet<T> DbSet { get; set; }

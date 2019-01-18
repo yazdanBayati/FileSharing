@@ -16,7 +16,7 @@ namespace Services {
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices (IServiceCollection services, IHostingEnvironment env) {
+        public void ConfigureServices (IServiceCollection services) {
             services.AddSingleton<IUnitOfWorkFactory, EntityFrameworkFactory>();
             services.AddSingleton<IRepositoryFactory, RepositoryFactory>();
             services.AddMvc ().SetCompatibilityVersion (CompatibilityVersion.Version_2_1);
