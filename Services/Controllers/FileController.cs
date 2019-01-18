@@ -27,7 +27,10 @@ namespace Services.Controllers
             using(var uow = _unitOfWorkFactory.Create(this.cnnStr))
             {
                 var repo = _repoFactory.Create<IFileRepository>(uow);
-                var file = new File();
+                var file = new File(){
+                    Name = "test",
+                    Path = "test"
+                };
                 await repo.AddAsync(file);
                 await uow.CommitAsync();
             }

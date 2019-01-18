@@ -17,6 +17,14 @@ public class FileSharingContext : DbContext, IUintOfWork
     }
 
     public DbSet<File> Files {get; set;}
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+       base.OnModelCreating(modelBuilder);
+        modelBuilder.Entity<File>()
+        .ToTable("File" , "FH")  
+        .HasKey(x => x.Id);
+    }
     public void Commit()
     {
         this.SaveChanges();
