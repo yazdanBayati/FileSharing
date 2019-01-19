@@ -8,10 +8,11 @@ namespace Core
        void Start();
        Task StartAsync();
        // void SaveChanges();
-        void Commit();
-        Task CommitAsync();
-        void Commit(int userId);
-        Task CommitAsync(int userId);
+        int Commit();
+
+        Task<int> CommitAsync();
+        int Commit(int userId);
+        Task<int> CommitAsync(int userId);
 
       //  void Rollback();
     }

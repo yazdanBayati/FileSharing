@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace Core
 {
     public interface IBaseRepository<T>:IDisposable
-    where T : class
+    
     {
       #region DefaultAction
 

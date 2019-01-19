@@ -7,15 +7,12 @@ namespace Services.Controllers
 {
     public abstract class FileSharingController : ControllerBase
     {
-         public FileSharingController(IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repoFactory, IConfiguration Configuration)
-         {
-             this._unitOfWorkFactory = unitOfWorkFactory;
-             this._repoFactory = repoFactory;
-             this.cnnStr = Configuration.GetConnectionString("FileSharingConnection");
-         }
-         protected IUnitOfWorkFactory _unitOfWorkFactory;
-         protected IRepositoryFactory _repoFactory;
-         protected string cnnStr; 
-         private IConfiguration Configuration { get; }
+        public FileSharingController(IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repoFactory)
+        {
+            this._unitOfWorkFactory = unitOfWorkFactory;
+            this._repoFactory = repoFactory;
+        }
+        protected IUnitOfWorkFactory _unitOfWorkFactory;
+        protected IRepositoryFactory _repoFactory;
     }
 }

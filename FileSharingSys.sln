@@ -3,7 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApplicationService", ".\ApplicationService\ApplicationService.csproj", "{EBFB0655-1876-4F20-B07F-3FD100C6FBE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", ".\Core\Core.csproj", "{0DC34701-9871-4238-84FF-EB727DA7519F}"
@@ -13,6 +12,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceAgent", ".\ServiceAgent\ServiceAgent.csproj", "{30842F73-B3B5-473C-A848-AF53D4D66AFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{79C1D425-A405-4638-A931-A635BB11D992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Mock", "DataAccess.Mock\DataAccess.Mock.csproj", "{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,5 +100,17 @@ Global
 		{79C1D425-A405-4638-A931-A635BB11D992}.Release|x64.Build.0 = Release|Any CPU
 		{79C1D425-A405-4638-A931-A635BB11D992}.Release|x86.ActiveCfg = Release|Any CPU
 		{79C1D425-A405-4638-A931-A635BB11D992}.Release|x86.Build.0 = Release|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Debug|x64.Build.0 = Debug|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Debug|x86.Build.0 = Debug|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|x64.ActiveCfg = Release|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|x64.Build.0 = Release|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|x86.ActiveCfg = Release|Any CPU
+		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -12,8 +12,8 @@ namespace Services.Controllers
     [ApiController]
     public class FileController : FileSharingController
     {
-        
-        public FileController(IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repoFactory, IConfiguration configuration):base(unitOfWorkFactory, repoFactory, configuration)
+
+        public FileController(IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repoFactory, IConfiguration configuration) : base(unitOfWorkFactory, repoFactory, configuration)
         {
 
         }
@@ -22,19 +22,19 @@ namespace Services.Controllers
         // GET api/values
         [HttpGet]
         public async Task<ActionResult<IEnumerable<string>>> Get()
-    {
-            
-            using(var uow = _unitOfWorkFactory.Create(this.cnnStr))
+        {
+            using (var uow = _unitOfWorkFactory.Create())
             {
                 var repo = _repoFactory.Create<IFileRepository>(uow);
-                var file = new File(){
-                    Name = "test",
-                    Path = "test"
+                var file = new File()
+                {
+                    Name = "test2",
+                    Path = "test2"
                 };
                 await repo.AddAsync(file);
                 await uow.CommitAsync();
             }
-            
+
             return new string[] { "value1", "value2" };
         }
 
@@ -43,14 +43,11 @@ namespace Services.Controllers
         public ActionResult<string> Get(int id)
         {
             return "value";
-            
+
         }
 
         // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+
 
         // PUT api/values/5
         [HttpPut("{id}")]

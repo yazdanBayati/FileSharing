@@ -1,19 +1,25 @@
 using System.Threading.Tasks;
 using Core;
+using DataAccess;
 using Microsoft.EntityFrameworkCore;
 
 public class FileSharingContext : DbContext, IUintOfWork
 {
     
-    private string _connStr;
-    public FileSharingContext(string connStr)
+    private string _cnnStr;
+     public FileSharingContext()
     {
-        this._connStr = connStr;
+        
     }
+    public FileSharingContext(string cnnStr)
+    {
+        this._cnnStr = cnnStr;
+    }
+   
 
      protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseNpgsql("Host=localhost;Port=5432;Username=postgres;Password=123;Database=FileSharing;");
+        optionsBuilder.UseSqlServer(_cnnStr);
     }
 
     public DbSet<File> Files {get; set;}
@@ -25,12 +31,8 @@ public class FileSharingContext : DbContext, IUintOfWork
         .ToTable("File" , "FH")  
         .HasKey(x => x.Id);
     }
-    public void Commit()
-    {
-        this.SaveChanges();
-    }
-
-    public void Commit(int userId)
+   
+    public int Commit(int userId)
     {
         throw new System.NotImplementedException();
     }
@@ -45,13 +47,20 @@ public class FileSharingContext : DbContext, IUintOfWork
         throw new System.NotImplementedException();
     }
 
-    public async Task CommitAsync()
+    public async Task<int> CommitAsync()
     {
-        await this.SaveChangesAsync();
+       return await this.SaveChangesAsync();
     }
 
-    public Task CommitAsync(int userId)
+    public Task<int> CommitAsync(int userId)
     {
         throw new System.NotImplementedException();
     }
+
+    int Commit()
+    {
+        return this.SaveChanges();
+    }
+
+   
 }

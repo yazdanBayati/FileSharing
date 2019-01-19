@@ -1,15 +1,20 @@
 using System;
 using Core;
-using JetBrains.Annotations;
+
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
 {
     public class EntityFrameworkFactory : IUnitOfWorkFactory
     {
-        public IUintOfWork Create(string connStr)
+       private string _cnnStr;
+       public EntityFrameworkFactory(string cnnStr)
+       {
+           this._cnnStr = cnnStr;
+       }
+        public IUintOfWork Create()
         {
-            return new FileSharingContext(connStr);
+            return new FileSharingContext(this._cnnStr);
         }
     }
 }
