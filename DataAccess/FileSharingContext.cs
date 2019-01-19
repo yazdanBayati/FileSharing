@@ -7,7 +7,7 @@ public class FileSharingContext : DbContext, IUintOfWork
 {
     
     private string _cnnStr;
-     public FileSharingContext()
+     public FileSharingContext(DbContextOptions<FileSharingContext> optionsBuilder):base(optionsBuilder)
     {
         
     }
@@ -17,10 +17,13 @@ public class FileSharingContext : DbContext, IUintOfWork
     }
    
 
-     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    {
-        optionsBuilder.UseSqlServer(_cnnStr);
-    }
+    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    // {
+    //     //optionsBuilder.UseSqlServer(_cnnStr);
+    //    optionsBuilder.IsConfigured
+    //    optionsBuilder.
+    //    optionsBuilder.UseNpgsql(_cnnStr);
+    // }
 
     public DbSet<File> Files {get; set;}
 
@@ -57,10 +60,9 @@ public class FileSharingContext : DbContext, IUintOfWork
         throw new System.NotImplementedException();
     }
 
-    int Commit()
+    public int Commit()
     {
         return this.SaveChanges();
     }
-
-   
+    
 }

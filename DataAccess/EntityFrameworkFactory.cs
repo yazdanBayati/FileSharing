@@ -7,14 +7,14 @@ namespace DataAccess
 {
     public class EntityFrameworkFactory : IUnitOfWorkFactory
     {
-       private string _cnnStr;
-       public EntityFrameworkFactory(string cnnStr)
+       private DbContextOptionsBuilder _optionsBuilder;
+       public EntityFrameworkFactory(DbContextOptionsBuilder optionsBuilder)
        {
-           this._cnnStr = cnnStr;
+           this._optionsBuilder = optionsBuilder;
        }
         public IUintOfWork Create()
         {
-            return new FileSharingContext(this._cnnStr);
+            return new FileSharingContext(this._optionsBuilder);
         }
     }
 }
