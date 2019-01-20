@@ -1,29 +1,38 @@
 using System.Threading.Tasks;
 using Core;
 using DataAccess;
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 public class FileSharingContext : DbContext, IUintOfWork
 {
     
-    private string _cnnStr;
-     public FileSharingContext(DbContextOptions<FileSharingContext> optionsBuilder):base(optionsBuilder)
+    private DbConfig _config;
+     public FileSharingContext()
     {
         
     }
-    public FileSharingContext(string cnnStr)
+    public FileSharingContext(DbConfig config)
     {
-        this._cnnStr = cnnStr;
+        this._config = config;
     }
    
 
-    // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-    // {
-    //     //optionsBuilder.UseSqlServer(_cnnStr);
-    //    optionsBuilder.IsConfigured
-    //    optionsBuilder.
-    //    optionsBuilder.UseNpgsql(_cnnStr);
-    // }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        // optionsBuilder.UseNpgsql("Host=localhost; Database =FileSharingDB;Username=postgres;Password=123;"); we should use this section for migration
+        
+        if(_config.IsDevEnv)
+        {
+           //optionsBuilder.UseSqlServer(_config.ConnectionString);
+
+           optionsBuilder.UseNpgsql(_config.ConnectionString);   
+        }
+        else
+        {
+           //optionsBuilder.Sqllight(_config.ConnectionString);
+        }
+    }
 
     public DbSet<File> Files {get; set;}
 
@@ -35,10 +44,7 @@ public class FileSharingContext : DbContext, IUintOfWork
         .HasKey(x => x.Id);
     }
    
-    public int Commit(int userId)
-    {
-        throw new System.NotImplementedException();
-    }
+   
 
     public void Start()
     {
@@ -60,9 +66,17 @@ public class FileSharingContext : DbContext, IUintOfWork
         throw new System.NotImplementedException();
     }
 
-    public int Commit()
+     public int Commit()
     {
         return this.SaveChanges();
     }
-    
+
+    public int Commit(int userId)
+    {
+        throw new System.NotImplementedException();
+    }
+
+   
+
+   
 }

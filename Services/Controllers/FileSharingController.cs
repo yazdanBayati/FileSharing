@@ -14,5 +14,5 @@ namespace Services.Controllers
         }
         protected IUnitOfWorkFactory _unitOfWorkFactory;
         protected IRepositoryFactory _repoFactory;
-    }
+}
 }

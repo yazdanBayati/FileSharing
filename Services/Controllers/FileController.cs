@@ -13,7 +13,7 @@ namespace Services.Controllers
     public class FileController : FileSharingController
     {
 
-        public FileController(IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repoFactory, IConfiguration configuration) : base(unitOfWorkFactory, repoFactory, configuration)
+        public FileController(IUnitOfWorkFactory unitOfWorkFactory, IRepositoryFactory repoFactory) : base(unitOfWorkFactory, repoFactory)
         {
 
         }

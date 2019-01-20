@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Servic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Mock", "DataAccess.Mock\DataAccess.Mock.csproj", "{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "infrastructure\Infrastructure.csproj", "{90F4297B-C65C-454D-AD31-21D96CA5296C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -112,5 +114,17 @@ Global
 		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|x64.Build.0 = Release|Any CPU
 		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|x86.ActiveCfg = Release|Any CPU
 		{6AF94C15-BB02-4811-8DAE-7C95A6A40FEC}.Release|x86.Build.0 = Release|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Debug|x64.Build.0 = Debug|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Debug|x86.Build.0 = Debug|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Release|x64.ActiveCfg = Release|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Release|x64.Build.0 = Release|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Release|x86.ActiveCfg = Release|Any CPU
+		{90F4297B-C65C-454D-AD31-21D96CA5296C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

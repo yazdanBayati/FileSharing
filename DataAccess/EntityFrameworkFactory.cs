@@ -1,20 +1,25 @@
 using System;
 using Core;
-
+using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
 {
     public class EntityFrameworkFactory : IUnitOfWorkFactory
     {
-       private DbContextOptionsBuilder _optionsBuilder;
-       public EntityFrameworkFactory(DbContextOptionsBuilder optionsBuilder)
+       private DbConfig _config;
+       public EntityFrameworkFactory(DbConfig config)
        {
-           this._optionsBuilder = optionsBuilder;
+           this._config = config;
        }
         public IUintOfWork Create()
         {
-            return new FileSharingContext(this._optionsBuilder);
+            return new FileSharingContext(this._config);
+        }
+
+        public IUintOfWork Create(string connStr)
+        {
+            throw new NotImplementedException();
         }
     }
 }
